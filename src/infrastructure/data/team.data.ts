@@ -17,11 +17,6 @@ import angel from '@/assets/team/angel.jpg'
  * - Los integrantes sin nombre o sin cargo no se publican.
  */
 
-const placeholderEducation = [
-  { degree: '[Maestría o posgrado]', institution: '[Universidad]', year: 2020 },
-  { degree: '[Licenciatura o ingeniería]', institution: '[Universidad]' },
-]
-
 const cristianEducation = [
   { degree: 'Ingeniería en Sistemas Computacionales', institution: 'Tecnológico de Monterrey', year: 2026 },
   { degree: 'Concentración en Ciencia de datos e Inteligencia Artificial Avanzada', institution: 'Tecnológico de Monterrey', year: 2026 },
