@@ -1,0 +1,100 @@
+/*
+ * Estilos globales. Solo usa variables generadas desde src/config/theme.config.ts.
+ * Los tonos de superficie (.surface-dark / .surface-light) remapean los roles
+ * de color para que un mismo componente funcione sobre fondo navy o claro.
+ */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--zs-layout-header-height);
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+body {
+  min-height: 100vh;
+  font-family: var(--zs-font-body);
+  font-size: var(--zs-font-size-body);
+  line-height: var(--zs-line-height-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+img,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+ul,
+ol {
+  list-style: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+:focus-visible {
+  outline: var(--zs-border-focus) solid var(--surface-accent);
+  outline-offset: var(--zs-space-1);
+  border-radius: var(--zs-radius-sm);
+}
+
+.surface-dark {
+  --surface-bg: var(--zs-color-bg);
+  --surface-card: var(--zs-color-surface);
+  --surface-line: var(--zs-color-line);
+  --surface-text: var(--zs-color-text);
+  --surface-muted: var(--zs-color-text-muted);
+  --surface-accent: var(--zs-color-accent);
+  --surface-accent-soft: var(--zs-color-accent-soft);
+  --surface-on-accent: var(--zs-color-on-accent);
+  background: var(--surface-bg);
+  color: var(--surface-text);
+}
+
+.surface-light {
+  --surface-bg: var(--zs-color-bg-inverse);
+  --surface-card: var(--zs-color-surface-inverse);
+  --surface-line: var(--zs-color-line-inverse);
+  --surface-text: var(--zs-color-text-inverse);
+  --surface-muted: var(--zs-color-text-muted-inverse);
+  --surface-accent: var(--zs-color-accent-inverse);
+  --surface-accent-soft: var(--zs-color-accent-soft-inverse);
+  --surface-on-accent: var(--zs-color-surface-inverse);
+  background: var(--surface-bg);
+  color: var(--surface-text);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

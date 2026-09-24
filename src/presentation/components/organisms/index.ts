@@ -1,0 +1,8 @@
+export { default as AboutSection } from './AboutSection.vue'
+export { default as AudienceSection } from './AudienceSection.vue'
+export { default as ContactSection } from './ContactSection.vue'
+export { default as HeroSection } from './HeroSection.vue'
+export { default as MethodSection } from './MethodSection.vue'
+export { default as SiteFooter } from './SiteFooter.vue'
+export { default as SiteHeader } from './SiteHeader.vue'
+export { default as TeamSection } from './TeamSection.vue'

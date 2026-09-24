@@ -1,0 +1,5 @@
+export { themeConfig } from './theme.config'
+export type { ThemeConfig } from './theme.config'
+export { motionConfig } from './motion.config'
+export { siteConfig } from './site.config'
+export type { SiteConfig, LogoVariant } from './site.config'
