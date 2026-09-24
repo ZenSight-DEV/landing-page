@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # ZenSight Consulting — Landing page
 
 Landing page de **zensightconsulting.com**, construida con Vue 3 + TypeScript, Motion for Vue (`motion-v`), Atomic Design y una arquitectura limpia (Clean Architecture). Colores, tipografía y reglas visuales vienen del manual de marca de ZenSight.
@@ -82,3 +83,6 @@ Regla de dependencias: `presentation → application → domain`. `infrastructur
 
 - Reemplazar los integrantes de ejemplo en `team.data.ts`.
 - Si es posible, sustituir los PNG de `src/assets/brand/` por el logotipo en SVG.
+=======
+# landing-page
+>>>>>>> origin/main
