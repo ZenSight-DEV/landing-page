@@ -37,6 +37,14 @@ export const useMotionPresets = () => {
     transition: transition(delay),
   })
 
+  /** Transición entre páginas al navegar. */
+  const pageTransition = () => ({
+    initial: { opacity: 0, y: distance.rise },
+    animate: { opacity: 1, y: 0 },
+    exit: { opacity: 0, y: -distance.rise },
+    transition: transition(0, duration.base),
+  })
+
   /** Onda que se expande (anillos del símbolo). */
   const ripple = (delay = 0) => ({
     initial: { opacity: 0, scale: scale.ringFrom },
@@ -66,5 +74,15 @@ export const useMotionPresets = () => {
     transition: transition(0, duration.fast),
   }
 
-  return { focusIn, riseIn, revealOnView, drawOnView, ripple, interactive, menu, transition }
+  return {
+    focusIn,
+    riseIn,
+    revealOnView,
+    pageTransition,
+    drawOnView,
+    ripple,
+    interactive,
+    menu,
+    transition,
+  }
 }

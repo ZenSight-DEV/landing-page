@@ -32,6 +32,12 @@ const headingId = toHeadingId(SECTION_IDS.contact)
             </a>
           </BaseText>
         </div>
+        <div class="contact__resource">
+          <BaseText size="small" tone="muted">{{ content.resource.description }}</BaseText>
+          <BaseButton :href="content.resource.cta.href" variant="secondary" download>
+            {{ content.resource.cta.label }}
+          </BaseButton>
+        </div>
       </div>
       <BrandRipple class="contact__visual" :tone="LOGO_TONES.dark" :animated="false" />
     </BaseContainer>
@@ -60,6 +66,15 @@ const headingId = toHeadingId(SECTION_IDS.contact)
   padding-top: var(--zs-space-4);
 }
 
+.contact__resource {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--zs-space-4);
+  padding-top: var(--zs-space-6);
+  border-top: var(--zs-border-hairline) solid var(--surface-line);
+}
+
 .contact__email {
   color: var(--surface-accent);
   font-weight: var(--zs-font-weight-medium);
@@ -69,5 +84,13 @@ const headingId = toHeadingId(SECTION_IDS.contact)
 
 .contact__visual {
   justify-self: center;
+}
+
+/* Punto donde la grilla pasa a una sola columna (splitColumns colapsa):
+   el gráfico va primero y el texto abajo, no al revés. */
+@media (max-width: 74rem) {
+  .contact__visual {
+    order: -1;
+  }
 }
 </style>

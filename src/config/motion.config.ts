@@ -24,6 +24,8 @@ export const motionConfig = {
     heroStep: 0.14,
     ringStep: 0.16,
     stageStep: 0.12,
+    /** Escalón de aparición para grillas de tarjetas (equipo, servicios). */
+    gridStep: 0.1,
   },
 
   distance: {

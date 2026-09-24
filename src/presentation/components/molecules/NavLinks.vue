@@ -1,6 +1,7 @@
 <script setup lang="ts">
+import { useRoute } from 'vue-router'
 import type { NavigationItem } from '@/domain/entities'
-import { toAnchor } from '@/shared/utils'
+import { useInternalLink } from '@/presentation/composables'
 
 withDefaults(
   defineProps<{ items: readonly NavigationItem[]; orientation?: 'horizontal' | 'vertical' }>(),
@@ -8,12 +9,25 @@ withDefaults(
 )
 
 const emit = defineEmits<{ select: [] }>()
+
+const route = useRoute()
+const { navigate } = useInternalLink()
+
+const onClick = (item: NavigationItem) => (event: MouseEvent) => {
+  navigate(item.to)(event)
+  emit('select')
+}
 </script>
 
 <template>
   <ul :class="['nav', `nav--${orientation}`]">
-    <li v-for="item in items" :key="item.targetId">
-      <a :href="toAnchor(item.targetId)" class="nav__link" @click="emit('select')">
+    <li v-for="item in items" :key="item.to">
+      <a
+        :href="item.to"
+        class="nav__link"
+        :aria-current="route.path === item.to ? 'page' : undefined"
+        @click="onClick(item)"
+      >
         {{ item.label }}
       </a>
     </li>
@@ -43,7 +57,8 @@ const emit = defineEmits<{ select: [] }>()
   color: var(--surface-text);
 }
 
-.nav__link:hover {
+.nav__link:hover,
+.nav__link[aria-current='page'] {
   color: var(--surface-text);
 }
 </style>

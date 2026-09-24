@@ -1,6 +1,6 @@
-import type { SectionId } from '@/shared/constants'
+import type { RoutePath } from '@/shared/constants'
 
 export interface NavigationItem {
   readonly label: string
-  readonly targetId: SectionId
+  readonly to: RoutePath
 }

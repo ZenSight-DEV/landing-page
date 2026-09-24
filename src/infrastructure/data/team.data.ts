@@ -1,4 +1,7 @@
 import type { TeamMember } from '@/domain/entities'
+import cristian from '@/assets/team/cristian.jpg'
+import nico from '@/assets/team/nico.jpg'
+import angel from '@/assets/team/angel.jpg'
 
 /**
  * Integrantes del equipo.
@@ -19,36 +22,59 @@ const placeholderEducation = [
   { degree: '[Licenciatura o ingeniería]', institution: '[Universidad]' },
 ]
 
-const placeholderCompanies = ['[Empresa 1]', '[Empresa 2]', '[Empresa 3]']
+const cristianEducation = [
+  { degree: 'Ingeniería en Sistemas Computacionales', institution: 'Tecnológico de Monterrey', year: 2026 },
+  { degree: 'Concentración en Ciencia de datos e Inteligencia Artificial Avanzada', institution: 'Tecnológico de Monterrey', year: 2026 },
+]
 
-const placeholderBio = '[Una o dos frases sobre su experiencia y lo que aporta al equipo.]'
+const angelEducation = [
+  { degree: 'Ingeniería en Sistemas Computacionales', institution: 'Tecnológico de Monterrey', year: 2026 },
+  { degree: 'Concentración en Ciencia de datos e Inteligencia Artificial Avanzada', institution: 'Tecnológico de Monterrey', year: 2026 },
+]
+
+const nicoEducation = [
+  { degree: 'Ingeniería en Sistemas Computacionales', institution: 'Tecnológico de Monterrey', year: 2026 },
+]
+
+const cristianCompanies = ['Microsoft']
+
+const angelCompanies = ['Microsoft', 'Inverkids']
+
+const cristianBio = 'Cristian es un apasionado de la tecnología y la innovación, con experiencia en desarrollo de software y liderazgo de equipos. Su enfoque está en crear soluciones eficientes y escalables.'
+
+const angelBio = 'Angel es un experto en arquitectura de software y diseño de sistemas, con un fuerte enfoque en la calidad y la sostenibilidad de las soluciones que desarrolla.'
+
+const nicoBio = 'Nicolas es un Product Owner con experiencia en gestión de proyectos y desarrollo de productos digitales, enfocado en entregar valor a los clientes y mejorar continuamente los procesos del equipo.'
 
 export const teamMembers: readonly TeamMember[] = [
   {
     id: 'integrante-1',
     order: 1,
-    name: '[Nombre Apellido]',
-    role: '[Cargo]',
-    bio: placeholderBio,
-    education: placeholderEducation,
-    companies: placeholderCompanies,
+    name: 'Cristian Chávez',
+    photoUrl: cristian,
+    role: 'Team Lead',
+    bio: cristianBio,
+    education: cristianEducation,
+    companies: cristianCompanies,
   },
   {
     id: 'integrante-2',
     order: 2,
-    name: '[Nombre Apellido]',
-    role: '[Cargo]',
-    bio: placeholderBio,
-    education: placeholderEducation,
-    companies: placeholderCompanies,
+    name: 'Nicolas Hood',
+    photoUrl: nico,
+    role: 'Product Owner',
+    bio: nicoBio,
+    education: nicoEducation,
+    companies: [],
   },
   {
     id: 'integrante-3',
     order: 3,
-    name: '[Nombre Apellido]',
-    role: '[Cargo]',
-    bio: placeholderBio,
-    education: placeholderEducation,
-    companies: placeholderCompanies,
+    name: 'Angel Ramírez',
+    photoUrl: angel,
+    role: 'Architecture Owner',
+    bio: angelBio,
+    education: angelEducation,
+    companies: angelCompanies,
   },
 ]

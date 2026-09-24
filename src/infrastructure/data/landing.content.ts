@@ -1,11 +1,61 @@
-import type { LandingContent } from '@/domain/entities'
+import type { LandingContent, Service } from '@/domain/entities'
 import { siteConfig } from '@/config'
-import { MAILTO_SCHEME, SECTION_IDS } from '@/shared/constants'
-import { toAnchor } from '@/shared/utils'
+import { MAILTO_SCHEME, ROUTES } from '@/shared/constants'
 
 const contactHref = `${MAILTO_SCHEME}${siteConfig.contactEmail}?subject=${encodeURIComponent(
   siteConfig.contactEmailSubject,
 )}`
+
+/**
+ * Servicios: se definen una sola vez y se reutilizan tanto agrupados por
+ * etapa (Método) como en el catálogo plano (Servicios), para no duplicar texto.
+ */
+const diagnosticoService: Service = {
+  id: 'diagnostico',
+  name: 'Diagnóstico de procesos',
+  description: 'Miramos cómo trabaja hoy tu organización: dónde fluye, dónde se atora y por qué.',
+}
+
+const redisenoService: Service = {
+  id: 'rediseno',
+  name: 'Rediseño y optimización',
+  description:
+    'Quitamos lo que sobra y rediseñamos lo que no funciona, para que cada proceso sea más simple.',
+}
+
+const documentacionService: Service = {
+  id: 'documentacion',
+  name: 'Documentación y estandarización',
+  description:
+    'Dejamos claro cómo se hacen las cosas, para que el conocimiento no dependa de una sola persona.',
+}
+
+const indicadoresService: Service = {
+  id: 'indicadores',
+  name: 'Indicadores y tableros de control',
+  description:
+    'Definimos qué vale la pena medir y lo convertimos en tableros que se entienden de un vistazo.',
+}
+
+const automatizacionService: Service = {
+  id: 'automatizacion',
+  name: 'Automatización y habilitación tecnológica',
+  description: 'Automatizamos lo repetitivo con la herramienta adecuada, solo cuando aporta valor real.',
+}
+
+const cambioService: Service = {
+  id: 'cambio',
+  name: 'Gestión del cambio y acompañamiento',
+  description: 'Acompañamos a tu equipo para que la nueva forma de trabajar se adopte y perdure.',
+}
+
+const automatizacionIaService: Service = {
+  id: 'automatizacion-ia',
+  name: 'Automatización de procesos con IA',
+  description:
+    'Sumamos inteligencia artificial donde tiene sentido: para acelerar tareas repetitivas y liberar tiempo de tu equipo, sin perder el control del proceso.',
+  tag: 'Nuevo',
+}
 
 /**
  * Contenido editorial de la landing (voz de marca: serena, clara, en tuteo).
@@ -13,19 +63,17 @@ const contactHref = `${MAILTO_SCHEME}${siteConfig.contactEmail}?subject=${encode
  */
 export const landingContent: LandingContent = {
   navigation: [
-    { label: 'Nosotros', targetId: SECTION_IDS.about },
-    { label: 'Método', targetId: SECTION_IDS.method },
-    { label: 'Equipo', targetId: SECTION_IDS.team },
-    { label: 'Contacto', targetId: SECTION_IDS.contact },
+    { label: 'Nosotros', to: ROUTES.about },
+    { label: 'Método', to: ROUTES.services },
   ],
 
-  headerCta: { label: 'Agenda un diagnóstico', href: contactHref },
+  headerCta: { label: 'Contáctanos', href: ROUTES.contact },
 
   hero: {
     title: siteConfig.brand.tagline,
     lead: 'Somos una consultora de procesos para pequeñas y medianas empresas. Te ayudamos a ver cómo trabaja hoy tu organización y a volverla más simple, medible y sostenible.',
-    primaryCta: { label: 'Agenda un diagnóstico', href: contactHref },
-    secondaryCta: { label: 'Conoce el método', href: toAnchor(SECTION_IDS.method) },
+    primaryCta: { label: 'Contáctanos', href: ROUTES.contact },
+    secondaryCta: { label: 'Conoce el método', href: ROUTES.services },
   },
 
   audience: {
@@ -38,6 +86,14 @@ export const landingContent: LandingContent = {
       'Nuevo liderazgo',
       'Nueva tecnología',
       'Es hora de mirar hacia adentro',
+    ],
+    signalsLabel: '¿Te suena familiar?',
+    signals: [
+      'Las reuniones se alargan y nadie sale con una decisión clara.',
+      'El conocimiento clave vive en la cabeza de una sola persona.',
+      'Nadie sabe con certeza quién tiene que aprobar qué.',
+      'Cada persona nueva aprende el proceso de una forma distinta.',
+      'Creciste, pero tu forma de trabajar sigue siendo la de hace tres años.',
     ],
   },
 
@@ -58,6 +114,40 @@ export const landingContent: LandingContent = {
     },
   },
 
+  values: {
+    title: 'Así somos, así trabajamos',
+    lead: 'La misma calma con la que miramos un proceso la ponemos en cada conversación contigo.',
+    concept: {
+      title: 'Un nombre, dos ideas',
+      zen: { label: 'Zen', text: 'Calma, atención plena, silencio.' },
+      sight: { label: 'Sight', text: 'Visión, comprensión, perspectiva.' },
+      promise:
+        'Creemos en la claridad sin ruido: se ve con más nitidez cuando primero se hace silencio. Por eso elegimos este nombre.',
+    },
+    traits: [
+      {
+        id: 'serena',
+        name: 'Serena',
+        description: 'Nunca vamos apurados ni alzamos la voz. Dejamos que cada conversación respire.',
+      },
+      {
+        id: 'clara',
+        name: 'Clara',
+        description: 'Decimos una cosa a la vez, y la decimos bien.',
+      },
+      {
+        id: 'perspicaz',
+        name: 'Perspicaz',
+        description: 'Te mostramos algo de tu propia organización que todavía no habías visto.',
+      },
+      {
+        id: 'humana',
+        name: 'Humana',
+        description: 'Cercanos y honestos, sin pretender que todo es perfecto.',
+      },
+    ],
+  },
+
   method: {
     title: 'Método ZenSight',
     lead: 'Cinco etapas que llevan a tu organización de ver con claridad a sostener el cambio.',
@@ -67,78 +157,52 @@ export const landingContent: LandingContent = {
         order: 1,
         name: 'Ver',
         summary: 'Entender cómo trabajan hoy.',
-        services: [
-          {
-            id: 'diagnostico',
-            name: 'Diagnóstico de procesos',
-            description:
-              'Miramos cómo trabaja hoy tu organización: dónde fluye, dónde se atora y por qué.',
-          },
-        ],
+        services: [diagnosticoService],
       },
       {
         id: 'ordenar',
         order: 2,
         name: 'Ordenar',
         summary: 'Simplificar y dejarlo claro.',
-        services: [
-          {
-            id: 'rediseno',
-            name: 'Rediseño y optimización',
-            description:
-              'Quitamos lo que sobra y rediseñamos lo que no funciona, para que cada proceso sea más simple.',
-          },
-          {
-            id: 'documentacion',
-            name: 'Documentación y estandarización',
-            description:
-              'Dejamos claro cómo se hacen las cosas, para que el conocimiento no dependa de una sola persona.',
-          },
-        ],
+        services: [redisenoService, documentacionService],
       },
       {
         id: 'medir',
         order: 3,
         name: 'Medir',
         summary: 'Saber si va mejor.',
-        services: [
-          {
-            id: 'indicadores',
-            name: 'Indicadores y tableros de control',
-            description:
-              'Definimos qué vale la pena medir y lo convertimos en tableros que se entienden de un vistazo.',
-          },
-        ],
+        services: [indicadoresService],
       },
       {
         id: 'habilitar',
         order: 4,
         name: 'Habilitar',
         summary: 'Tecnología donde aporta.',
-        services: [
-          {
-            id: 'automatizacion',
-            name: 'Automatización y habilitación tecnológica',
-            description:
-              'Automatizamos lo repetitivo con la herramienta adecuada, solo cuando aporta valor real.',
-          },
-        ],
+        services: [automatizacionService],
       },
       {
         id: 'sostener',
         order: 5,
         name: 'Sostener',
         summary: 'Que el cambio perdure.',
-        services: [
-          {
-            id: 'cambio',
-            name: 'Gestión del cambio y acompañamiento',
-            description:
-              'Acompañamos a tu equipo para que la nueva forma de trabajar se adopte y perdure.',
-          },
-        ],
+        services: [cambioService],
       },
     ],
+  },
+
+  services: {
+    title: 'Nuestros servicios',
+    lead: 'Desde entender cómo trabajas hoy hasta automatizar lo que tiene sentido automatizar. Elige el punto de partida que tu organización necesita.',
+    services: [
+      automatizacionIaService,
+      diagnosticoService,
+      redisenoService,
+      documentacionService,
+      indicadoresService,
+      automatizacionService,
+      cambioService,
+    ],
+    cta: { label: 'Hablemos de tu proceso', href: ROUTES.contact },
   },
 
   team: {
@@ -157,6 +221,10 @@ export const landingContent: LandingContent = {
     lead: 'Cuéntanos en qué momento está tu empresa y agendamos una primera conversación.',
     cta: { label: 'Escríbenos', href: contactHref },
     emailLabel: 'O escribe directamente a',
+    resource: {
+      description: 'Nuestra identidad de marca: colores, tipografía y uso del logotipo.',
+      cta: { label: 'Descargar manual de marca', href: siteConfig.resources.brandManual },
+    },
   },
 
   footer: {

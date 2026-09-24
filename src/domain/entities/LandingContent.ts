@@ -1,6 +1,7 @@
 import type { CallToAction } from './CallToAction'
 import type { MethodStage } from './MethodStage'
 import type { NavigationItem } from './NavigationItem'
+import type { Service } from './Service'
 
 export interface HeroContent {
   readonly title: string
@@ -14,6 +15,8 @@ export interface AudienceContent {
   readonly lead: string
   readonly momentsLabel: string
   readonly moments: readonly string[]
+  readonly signalsLabel: string
+  readonly signals: readonly string[]
 }
 
 export interface StatementContent {
@@ -29,10 +32,37 @@ export interface AboutContent {
   readonly vision: StatementContent
 }
 
+export interface ConceptContent {
+  readonly title: string
+  readonly zen: StatementContent
+  readonly sight: StatementContent
+  readonly promise: string
+}
+
+export interface ValueTrait {
+  readonly id: string
+  readonly name: string
+  readonly description: string
+}
+
+export interface ValuesContent {
+  readonly title: string
+  readonly lead: string
+  readonly concept: ConceptContent
+  readonly traits: readonly ValueTrait[]
+}
+
 export interface MethodContent {
   readonly title: string
   readonly lead: string
   readonly stages: readonly MethodStage[]
+}
+
+export interface ServicesContent {
+  readonly title: string
+  readonly lead: string
+  readonly services: readonly Service[]
+  readonly cta: CallToAction
 }
 
 export interface TeamCardLabels {
@@ -48,11 +78,17 @@ export interface TeamContent {
   readonly cardLabels: TeamCardLabels
 }
 
+export interface ContactResourceContent {
+  readonly description: string
+  readonly cta: CallToAction
+}
+
 export interface ContactContent {
   readonly title: string
   readonly lead: string
   readonly cta: CallToAction
   readonly emailLabel: string
+  readonly resource: ContactResourceContent
 }
 
 export interface UiLabels {
@@ -74,7 +110,9 @@ export interface LandingContent {
   readonly hero: HeroContent
   readonly audience: AudienceContent
   readonly about: AboutContent
+  readonly values: ValuesContent
   readonly method: MethodContent
+  readonly services: ServicesContent
   readonly team: TeamContent
   readonly contact: ContactContent
   readonly footer: FooterContent

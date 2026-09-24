@@ -4,17 +4,22 @@ import { AnimatePresence, motion } from 'motion-v'
 import { useMediaQuery } from '@vueuse/core'
 import type { CallToAction, NavigationItem, UiLabels } from '@/domain/entities'
 import { themeConfig } from '@/config'
-import { SECTION_IDS } from '@/shared/constants'
-import { toAnchor } from '@/shared/utils'
+import { ROUTES } from '@/shared/constants'
 import { BaseButton, BaseContainer, BrandLogo, MenuIcon } from '@/presentation/components/atoms'
 import { NavLinks } from '@/presentation/components/molecules'
-import { useMotionPresets } from '@/presentation/composables'
+import { useInternalLink, useMotionPresets } from '@/presentation/composables'
 
 defineProps<{ navigation: readonly NavigationItem[]; cta: CallToAction; labels: UiLabels }>()
 
 const isDesktop = useMediaQuery(`(min-width: ${themeConfig.breakpoint.desktopNav}px)`)
 const isMenuOpen = ref(false)
 const { menu } = useMotionPresets()
+const { navigate } = useInternalLink()
+
+const onLogoClick = (event: MouseEvent) => {
+  navigate(ROUTES.home)(event)
+  closeMenu()
+}
 
 const closeMenu = () => {
   isMenuOpen.value = false
@@ -26,7 +31,7 @@ watch(isDesktop, closeMenu)
 <template>
   <header class="header surface-dark">
     <BaseContainer class="header__bar">
-      <a :href="toAnchor(SECTION_IDS.hero)" :aria-label="labels.homeLink" @click="closeMenu">
+      <a :href="ROUTES.home" :aria-label="labels.homeLink" @click="onLogoClick">
         <BrandLogo variant="wordmark" size="header" decorative />
       </a>
 

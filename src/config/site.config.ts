@@ -1,8 +1,8 @@
-import logoLight from '@/assets/brand/logo-light.png'
-import symbolLight from '@/assets/brand/symbol-light.png'
-import symbolDark from '@/assets/brand/symbol-dark.png'
-import wordmarkLight from '@/assets/brand/wordmark-light.png'
-import wordmarkDark from '@/assets/brand/wordmark-dark.png'
+import logoLight from '@/assets/brand/logo-light.svg'
+import symbolLight from '@/assets/brand/symbol-light.svg'
+import symbolDark from '@/assets/brand/symbol-dark.svg'
+import wordmarkLight from '@/assets/brand/wordmark-light.svg'
+import wordmarkDark from '@/assets/brand/wordmark-dark.svg'
 import { LOGO_TONES } from '@/shared/constants'
 
 const domain = 'zensightconsulting.com'
@@ -25,6 +25,33 @@ export const siteConfig = {
     title: 'ZenSight Consulting | Consultoría de procesos para pymes',
     description:
       'Ayudamos a pequeñas y medianas empresas a ver con claridad cómo trabajan, para que sus procesos sean simples, medibles y sostenibles.',
+    /** Título y descripción por página, usados por el router al cambiar de ruta. */
+    pages: {
+      home: {
+        title: 'ZenSight Consulting | Consultoría de procesos para pymes',
+        description:
+          'Ayudamos a pequeñas y medianas empresas a ver con claridad cómo trabajan, para que sus procesos sean simples, medibles y sostenibles.',
+      },
+      about: {
+        title: 'Nosotros | ZenSight Consulting',
+        description: 'Ayudamos a las organizaciones a trabajar con claridad: quiénes somos y por qué.',
+      },
+      services: {
+        title: 'Método y servicios | ZenSight Consulting',
+        description:
+          'Las cinco etapas del Método ZenSight y nuestros servicios: diagnóstico de procesos, automatización con IA, indicadores y acompañamiento.',
+      },
+      contact: {
+        title: 'Contacto | ZenSight Consulting',
+        description:
+          'Cuéntanos en qué momento está tu empresa. Conoce también al equipo que te acompaña en cada etapa del recorrido.',
+      },
+    },
+  },
+
+  /** Recursos descargables servidos como archivos estáticos (carpeta public/). */
+  resources: {
+    brandManual: '/brand/manual-de-marca.pdf',
   },
 
   fonts: {

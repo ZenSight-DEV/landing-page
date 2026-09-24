@@ -42,6 +42,21 @@ const headingId = toHeadingId(SECTION_IDS.hero)
   align-items: center;
 }
 
+/* Pantallas de proporción baja (corta y ancha): dejar de forzar el alto
+   completo para que el texto y el gráfico no se corten ni choquen con lo
+   que sigue debajo. */
+@media (max-height: 640px) {
+  .hero {
+    min-height: auto;
+    padding-block: var(--zs-space-16);
+  }
+
+  /* El gráfico pasa a ir primero (arriba del texto). */
+  .hero__visual {
+    order: -1;
+  }
+}
+
 .hero__grid {
   display: grid;
   grid-template-columns: var(--zs-layout-split-columns);
@@ -57,5 +72,13 @@ const headingId = toHeadingId(SECTION_IDS.hero)
 
 .hero__visual {
   justify-self: center;
+}
+
+/* Punto donde la grilla pasa a una sola columna (splitColumns colapsa):
+   el gráfico va primero y el texto abajo, no al revés. */
+@media (max-width: 74rem) {
+  .hero__visual {
+    order: -1;
+  }
 }
 </style>

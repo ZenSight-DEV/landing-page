@@ -1,13 +1,18 @@
 <script setup lang="ts">
+import { motion } from 'motion-v'
 import type { TeamContent, TeamMember } from '@/domain/entities'
+import { motionConfig } from '@/config'
 import { SECTION_IDS } from '@/shared/constants'
 import { toHeadingId } from '@/shared/utils'
 import { BaseContainer, BaseSection, BaseText } from '@/presentation/components/atoms'
 import { SectionIntro, TeamMemberCard } from '@/presentation/components/molecules'
+import { useMotionPresets } from '@/presentation/composables'
 
 defineProps<{ content: TeamContent; members: readonly TeamMember[] }>()
 
+const { revealOnView } = useMotionPresets()
 const headingId = toHeadingId(SECTION_IDS.team)
+const { delay } = motionConfig
 </script>
 
 <template>
@@ -15,9 +20,13 @@ const headingId = toHeadingId(SECTION_IDS.team)
     <BaseContainer class="team">
       <SectionIntro :title="content.title" :lead="content.lead" :heading-id="headingId" />
       <ul v-if="members.length" class="team__grid">
-        <li v-for="member in members" :key="member.id">
+        <motion.li
+          v-for="(member, index) in members"
+          :key="member.id"
+          v-bind="revealOnView(index * delay.gridStep)"
+        >
           <TeamMemberCard :member="member" :labels="content.cardLabels" />
-        </li>
+        </motion.li>
       </ul>
       <BaseText v-else tone="muted">{{ content.emptyState }}</BaseText>
     </BaseContainer>

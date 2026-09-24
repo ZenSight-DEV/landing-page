@@ -108,12 +108,15 @@ export const themeConfig = {
     proseMax: '40rem',
     gutter: 'clamp(1.25rem, 4vw, 3rem)',
     headerHeight: '4.5rem',
-    sectionPadding: 'clamp(5rem, 12vw, 9rem)',
+    sectionPadding: 'clamp(6rem, 13vw, 10.5rem)',
     cardMinWidth: '16rem',
     /** Rejilla de dos columnas que se apila en pantallas angostas. */
     splitColumns: 'repeat(auto-fit, minmax(min(100%, 32rem), 1fr))',
     stepMinWidth: '12rem',
-    heroGraphicSize: 'min(34rem, 78vw)',
+    /** Se ajusta al eje más corto (ancho o alto) para no invadir lo que sigue en pantallas bajas. */
+    heroGraphicSize: 'min(34rem, 78vw, 52vh)',
+    /** Alto de los divisores verticales entre secciones (se completan al llegar a la de abajo). */
+    dividerHeight: 'clamp(26rem, 55vh, 42rem)',
     heroSymbolSize: '30%',
     avatarSize: '5.5rem',
     logoHeader: '1.75rem',

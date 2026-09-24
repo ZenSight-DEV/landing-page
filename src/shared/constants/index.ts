@@ -3,16 +3,31 @@
  * Regla del proyecto: todo valor que se repite en 3 o más lugares vive aquí.
  */
 
-/** Ids de las secciones: los usan la navegación, las secciones y los llamados a la acción. */
+/** Ids de las secciones: los usan las secciones (aria-labelledby, id del `<section>`). */
 export const SECTION_IDS = {
   hero: 'inicio',
   about: 'nosotros',
+  values: 'valores',
   method: 'metodo',
+  services: 'servicios',
   team: 'equipo',
   contact: 'contacto',
 } as const
 
 export type SectionId = (typeof SECTION_IDS)[keyof typeof SECTION_IDS]
+
+/**
+ * Rutas del sitio: fuente única para el router, la navegación y los CTA internos.
+ * Método vive junto con Servicios (/servicios) y Equipo junto con Contacto (/contacto).
+ */
+export const ROUTES = {
+  home: '/',
+  about: '/nosotros',
+  services: '/servicios',
+  contact: '/contacto',
+} as const
+
+export type RoutePath = (typeof ROUTES)[keyof typeof ROUTES]
 
 /** Prefijo de todas las variables CSS generadas desde la configuración del tema. */
 export const CSS_VAR_PREFIX = '--zs'

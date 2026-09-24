@@ -23,6 +23,15 @@ const { revealOnView } = useMotionPresets()
           <li v-for="moment in content.moments" :key="moment"><AppTag>{{ moment }}</AppTag></li>
         </ul>
       </div>
+
+      <div class="audience__signals">
+        <BaseText size="small" tone="muted">{{ content.signalsLabel }}</BaseText>
+        <ul class="audience__signals-list">
+          <li v-for="signal in content.signals" :key="signal">
+            <BaseText size="small">{{ signal }}</BaseText>
+          </li>
+        </ul>
+      </div>
     </BaseContainer>
   </div>
 </template>
@@ -50,5 +59,33 @@ const { revealOnView } = useMotionPresets()
   display: flex;
   flex-wrap: wrap;
   gap: var(--zs-space-3);
+}
+
+.audience__signals {
+  display: flex;
+  flex-direction: column;
+  gap: var(--zs-space-4);
+}
+
+.audience__signals-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 18rem), 1fr));
+  gap: var(--zs-space-3) var(--zs-space-8);
+}
+
+.audience__signals-list li {
+  position: relative;
+  padding-left: var(--zs-space-6);
+}
+
+.audience__signals-list li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.6em;
+  width: var(--zs-space-2);
+  height: var(--zs-space-2);
+  border-radius: var(--zs-radius-full);
+  background: var(--surface-accent);
 }
 </style>

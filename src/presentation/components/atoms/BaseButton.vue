@@ -1,16 +1,22 @@
 <script setup lang="ts">
 import { motion } from 'motion-v'
-import { useMotionPresets } from '@/presentation/composables'
+import { useInternalLink, useMotionPresets } from '@/presentation/composables'
 
 type ButtonVariant = 'primary' | 'secondary'
 
 withDefaults(defineProps<{ href: string; variant?: ButtonVariant }>(), { variant: 'primary' })
 
 const { interactive } = useMotionPresets()
+const { navigate } = useInternalLink()
 </script>
 
 <template>
-  <motion.a :href="href" :class="['button', `button--${variant}`]" v-bind="interactive">
+  <motion.a
+    :href="href"
+    :class="['button', `button--${variant}`]"
+    v-bind="interactive"
+    @click="navigate(href)"
+  >
     <slot />
   </motion.a>
 </template>
